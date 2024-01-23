@@ -1,0 +1,15 @@
+C:\Users\Riki\testchat\bin\Debug\net8.0\testchat.exe
+C:\Users\Riki\testchat\bin\Debug\net8.0\testchat.deps.json
+C:\Users\Riki\testchat\bin\Debug\net8.0\testchat.runtimeconfig.json
+C:\Users\Riki\testchat\bin\Debug\net8.0\testchat.dll
+C:\Users\Riki\testchat\bin\Debug\net8.0\testchat.pdb
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.AssemblyInfoInputs.cache
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.AssemblyInfo.cs
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.csproj.CoreCompileInputs.cache
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.sourcelink.json
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.dll
+C:\Users\Riki\testchat\obj\Debug\net8.0\refint\testchat.dll
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.pdb
+C:\Users\Riki\testchat\obj\Debug\net8.0\testchat.genruntimeconfig.cache
+C:\Users\Riki\testchat\obj\Debug\net8.0\ref\testchat.dll

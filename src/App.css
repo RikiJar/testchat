@@ -1,0 +1,11 @@
+body{
+    background-color: #343541;
+}
+.App {
+    width: 1200px;
+    height: 900px;
+    outline-color: white;
+    outline-style: solid;
+    margin: 10px auto;
+    border-radius: 25px;
+}
