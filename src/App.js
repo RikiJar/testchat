@@ -1,26 +1,33 @@
-import { AppBar, Button, Toolbar } from '@mui/material';
+import { AppBar, Button, Toolbar, Box } from '@mui/material';
 import './App.css';
 import TypeBox from './typebox/typeBox.js';
+import ChatMessage from './ChatMessage/ChatMessage.js';
 
 function App() {
   return (
-    <div className="Main">
-      <AppBar position="static" sx={{ 
-        backgroundColor: "black", 
-      }}>
-        <Toolbar>
-          <Button variant="contained" sx={{
-            backgroundColor: "white",
-            color: "black",
-            left: "0%",
-          }}>Kirjaudu sisään
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <div className="App">
-        <TypeBox />
-      </div>
-    </div>
+  <Box>
+      <AppBar position="static"
+      sx={{
+        backgroundColor: "black",
+      }}
+      >
+      <Toolbar>
+        <Button variant="outlined"
+        color="primary"
+        >
+          Kirjaudu sisään
+        </Button>
+      </Toolbar>
+    </AppBar>
+    <Box className="App">
+      <Box mb={2}>
+        <ChatMessage />
+      </Box>
+    </Box>
+    <Box>
+      <TypeBox />
+    </Box>
+  </Box>
   );
 }
 

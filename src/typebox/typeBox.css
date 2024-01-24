@@ -1,4 +1,9 @@
-.typeBox{
-    
-    
+.custom-icon {
+    transition: transform 0.3s ease-out;
+    width: 40px;
+    height: 40px;
+}
+
+.sendButton:hover .custom-icon {
+    transform: translateX(50%); /* Adjust the value to control the "leaving" distance */
 }

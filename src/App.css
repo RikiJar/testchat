@@ -2,10 +2,29 @@ body{
     background-color: #343541;
 }
 .App {
-    width: 1200px;
-    height: 900px;
-    outline-color: white;
-    outline-style: solid;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    max-height: 850px;
     margin: 10px auto;
     border-radius: 25px;
+    flex-grow: 1;
+    overflow-y: auto;
+    font-size: 20px;
+}
+.App::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.App::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+}
+
+.App::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px; 
+}
+
+.App::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
 }

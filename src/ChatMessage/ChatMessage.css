@@ -1,0 +1,19 @@
+.messageBox {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 10px;
+    text-align: left;
+}
+
+/* App.css or ChatMessage.css */
+
+/* Style for the entire message container */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.username {
+  font-weight: bold;
+}
