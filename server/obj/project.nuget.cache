@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TKIjeTyw056Ope8C5MIUx5FBNXHtsEFxrbQMvwnT8j+p70l3OpGzSNlUwPXKFsiGjyMg0yE1wwTP4WimQiMK1Q==",
+  "dgSpecHash": "oTu68C+mMiEvHseOXN92dJdQas3YKvNzlfBpQs9hHVE5/JjUUDqtSfoxw2ckvGfb3yNtMjkKwZUMtUj1jrJQDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Riki\\testchat\\server\\server.csproj",
+  "projectFilePath": "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Riki\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.1\\microsoft.entityframeworkcore.8.0.1.nupkg.sha512",
     "C:\\Users\\Riki\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.1\\microsoft.entityframeworkcore.abstractions.8.0.1.nupkg.sha512",

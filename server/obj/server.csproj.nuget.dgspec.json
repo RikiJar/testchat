@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Riki\\testchat\\server\\server.csproj": {}
+    "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Riki\\testchat\\server\\server.csproj": {
+    "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Riki\\testchat\\server\\server.csproj",
+        "projectUniqueName": "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\Riki\\testchat\\server\\server.csproj",
+        "projectPath": "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\server.csproj",
         "packagesPath": "C:\\Users\\Riki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Riki\\testchat\\server\\obj\\",
+        "outputPath": "C:\\Users\\Riki\\Documents\\GitHub\\testchat\\server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
