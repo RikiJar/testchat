@@ -10,6 +10,7 @@ function Spotify() {
     const redirect_uri = "http://localhost:3000";
     const [showButton, setShowButton] = useState(true);
     const [data, setData] = useState([]);
+    const [devices, setDevices] = useState([]);
 
     const params = (hash) => {
         const afterHashtag = hash.substring(1);
@@ -36,7 +37,7 @@ function Spotify() {
     }, []);
     
     const getSpotifyData = () => {
-        window.location = `${spotify_endpoint}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=%20user-read-recently-played&response_type=token&show_dialog=true`;
+        window.location = `${spotify_endpoint}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=%20user-read-recently-played%20user-read-playback-state%20user-modify-playback-state&response_type=token&show_dialog=true`;
     }
 
     const getSpotifyHistoryData = async () => {
@@ -56,6 +57,40 @@ function Spotify() {
         }
     }
 
+    const changeSong = async (uri) => {
+        const accessToken = localStorage.getItem("accessToken");
+        const tokenType = localStorage.getItem("tokenType");
+        const expiresIn = localStorage.getItem("expiresIn");
+        try {
+            const response = await axios.get("https://api.spotify.com/v1/me/player/devices", {
+                headers: {
+                    "Authorization": `${tokenType} ${accessToken}`
+                }
+            });
+            setDevices(response.data.devices);
+        }
+        catch (error) {
+            console.error("Error with retrieving device data", error);
+        }
+        try {
+            console.log(uri)
+            const response = await axios.put("https://api.spotify.com/v1/me/player/play", {
+                "device_id": devices[0].id,
+                "context_uri": uri,
+                "offset": {
+                    "position": 0
+                },
+                "position_ms": 0
+            }, {
+                headers: {
+                    "Authorization": `${tokenType} ${accessToken}`
+                }
+            });
+        } catch (error) {
+            console.error("Error:", error.response.data);
+        }
+    }
+
     return (
         <Container>
             <Button onClick={getSpotifyData} sx={{background: "#292617", color: "white"}}>Login to Spotify</Button>
@@ -66,7 +101,7 @@ function Spotify() {
     
                 return (
                     <div key={index} style={{borderBottom: "1px solid #aaa"}}>
-                        <img src={item.track.album.images[2].url} alt="album" style={{
+                        <img src={item.track.album.images[2].url} onClick={() => changeSong(item.track.album.uri)} alt="album" style={{
                             maxHeight: "80px", 
                             maxWidth: "80px", 
                             float: "left",  
