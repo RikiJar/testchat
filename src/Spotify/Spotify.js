@@ -11,6 +11,7 @@ function Spotify() {
     const [showButton, setShowButton] = useState(true);
     const [data, setData] = useState([]);
     const [devices, setDevices] = useState([]);
+    const [showData, setShowData] = useState(false);
 
     const params = (hash) => {
         const afterHashtag = hash.substring(1);
@@ -31,8 +32,8 @@ function Spotify() {
             localStorage.setItem("tokenType", token_type);
             localStorage.setItem("expiresIn", expires_in);
             localStorage.setItem("token", token);
-            console.log(token);
             setShowButton(false);
+            window.location.hash = "";
         }
     }, []);
     
@@ -55,79 +56,85 @@ function Spotify() {
         catch (error) {
             console.error("Error", error);
         }
+        setShowData(true);
     }
 
     const changeSong = async (uri) => {
         const accessToken = localStorage.getItem("accessToken");
         const tokenType = localStorage.getItem("tokenType");
         const expiresIn = localStorage.getItem("expiresIn");
+        
         try {
             const response = await axios.get("https://api.spotify.com/v1/me/player/devices", {
                 headers: {
                     "Authorization": `${tokenType} ${accessToken}`
                 }
             });
-            setDevices(response.data.devices);
-        }
-        catch (error) {
-            console.error("Error with retrieving device data", error);
-        }
-        try {
-            console.log(uri)
-            const response = await axios.put("https://api.spotify.com/v1/me/player/play", {
-                "device_id": devices[0].id,
-                "context_uri": uri,
-                "offset": {
-                    "position": 0
-                },
-                "position_ms": 0
-            }, {
-                headers: {
-                    "Authorization": `${tokenType} ${accessToken}`
-                }
-            });
+            const devices = response.data.devices;
+    
+            if (devices.length > 0) {
+                await axios.put("https://api.spotify.com/v1/me/player/play", {
+                    "device_id": devices[0].id,
+                    "uris": [uri],
+                    "position_ms": 0
+                }, {
+                    headers: {
+                        "Authorization": `${tokenType} ${accessToken}`
+                    }
+                });
+            } else {
+                console.error("No devices available.");
+            }
         } catch (error) {
             console.error("Error:", error.response.data);
         }
-    }
+    };
 
     return (
-        <Container>
-            <Button onClick={getSpotifyData} sx={{background: "#292617", color: "white"}}>Login to Spotify</Button>
-            <Button onClick={getSpotifyHistoryData} sx={{background: "#292617", color: "white"}}>Get Spotify History</Button>
-            {data.map((item, index) => {
-                const date = new Date(item.played_at);
-                const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-    
-                return (
-                    <div key={index} style={{borderBottom: "1px solid #aaa"}}>
-                        <img src={item.track.album.images[2].url} onClick={() => changeSong(item.track.album.uri)} alt="album" style={{
-                            maxHeight: "80px", 
-                            maxWidth: "80px", 
-                            float: "left",  
-                            marginRight: "10px",
-                        }}/>
-                        <div style={{
-                            fontFamily: "Poppins, sans-serif", 
-                            color: "white", 
-                            fontSize: "20px"
-                        }}>
-                            <div style={{float: "center"}}><p>{item.track.name}</p></div>
-                            <div><p>{item.track.artists[0].name}</p></div>
-                        </div>
-                        <div style={{
-                            float: "right",
-                            fontFamily: "Poppins, sans-serif", 
-                            color: "white", 
-                            fontSize: "20px"}}
-                        >
-                            <p>{formattedDate}</p>
-                        </div>
-                    </div>
-                );
-            })}
-        </Container>
-    );    
+        <div>
+            <Container>
+                {showButton ? <Button onClick={getSpotifyData} sx={{ background: "#292617", color: "white" }}>Login to Spotify</Button> : null}
+                <Button onClick={getSpotifyHistoryData} sx={{ background: "#292617", color: "white" }}>Get Spotify History</Button>
+                {showData ? (
+                     data === null ? (
+                        <div>Loading...</div>
+                            ) : (
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th id="thSong">Song</th>
+                                            <th>Artist</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data.map((item, index) => {
+                                            const date = new Date(item.played_at);
+                                            const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+
+                                            return (
+                                                <tr key={index}>
+                                                    <td>
+                                                        <img src={item.track.album.images[2].url} onClick={() => changeSong(item.track.uri)} alt="album" style={{
+                                                            maxHeight: "200px",
+                                                            maxWidth: "200px",
+                                                        }} />
+                                                    </td>
+                                                    <td>{item.track.name}</td>
+                                                    <td>{item.track.artists[0].name}</td>
+                                                    <td>{formattedDate}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            )
+                        ) : null
+                        }
+            </Container>
+        </div>
+    );        
 }
 
 export default Spotify;
