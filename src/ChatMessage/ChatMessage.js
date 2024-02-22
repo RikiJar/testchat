@@ -5,16 +5,17 @@ import './ChatMessage.css';
 function ChatMessage() {
     const [data, setData]  = useState([]);
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:5039/chatmessage');
+            const json = await response.json();
+            setData(json);
+        } catch (error) {
+            console.error("Error", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:5039/chatmessage');
-                const json = await response.json();
-                setData(json);
-            } catch (error) {
-                console.error("Error", error);
-            }
-        };
         fetchData();
     }, []);
 

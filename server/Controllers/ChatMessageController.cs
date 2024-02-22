@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using server.models;
 
 namespace server.Controllers;
 
@@ -7,29 +8,19 @@ namespace server.Controllers;
 
 public class ChatMessageController : ControllerBase {
     private readonly ILogger<ChatMessageController> _logger;
+    private readonly YourDbContext _dbContext;
 
-    public ChatMessageController(ILogger<ChatMessageController> logger)
+    public ChatMessageController(ILogger<ChatMessageController> logger, YourDbContext dbContext)
     {
         _logger = logger;
+        _dbContext = dbContext;
     }
 
-    List<string> randomNames = new List<string>
-    {
-        "Alice", "Bob", "Charlie", "David", "Eva", "Frank",
-        "Grace", "Henry", "Ivy", "Jack", "Katie", "Liam",
-        "Mia", "Nathan", "Olivia", "Paul", "Quinn", "Rachel",
-        "Samuel", "Taylor", "Ursula", "Victor", "Wendy", "Xander",
-        "Yasmine", "Zachary"
-    };
-
     [HttpGet(Name = "GetChatMessages")]
-    public IEnumerable<ChatMessage> Get()
+    public IActionResult Get()
     {
-        return Enumerable.Range(1, 20).Select(index => new ChatMessage
-        {
-            UserId = randomNames[new Random().Next(0, randomNames.Count)],
-            Message = $"Message {index}"
-        })
-        .ToArray();
+        List <messages>? m = _dbContext.messages.ToList();
+        
+        return Ok(m);
     }
 }

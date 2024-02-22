@@ -1,6 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<YourDbContext>(options =>
+    options.UseSqlite("Data Source=testdb.db"));
 
 // Add services to the container.
 builder.Services.AddControllers();
