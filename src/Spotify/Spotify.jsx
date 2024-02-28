@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Spotify.css';
 import axios from 'axios';
-import { Container, Button, Stack, Paper } from '@mui/material';
+import { Container, Button, Stack, Paper, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 function Spotify() {
@@ -97,7 +97,7 @@ function Spotify() {
                 <Button onClick={getSpotifyHistoryData} sx={{ background: "#292617", color: "white" }}>Get Spotify History</Button>
                 {showData ? (
                      data === null ? (
-                        <div>Loading...</div>
+                        <div><LinearProgress /></div>
                             ) : (
                                 <table>
                                     <thead>

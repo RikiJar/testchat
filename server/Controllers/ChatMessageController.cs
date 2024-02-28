@@ -23,4 +23,12 @@ public class ChatMessageController : ControllerBase {
         
         return Ok(m);
     }
+
+    [HttpPost(Name = "PostChatMessages")]
+    public IActionResult Post([FromBody] messages m)
+    {
+        _dbContext.messages.Add(m);
+        _dbContext.SaveChanges();
+        return Ok();
+    }
 }

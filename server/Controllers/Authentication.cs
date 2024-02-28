@@ -1,10 +1,13 @@
+using System.ComponentModel;
+using System.Data.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using server.models;
 
 namespace server.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class Authentication : ControllerBase {
     private readonly ILogger<ChatMessageController> _logger;
     private readonly YourDbContext _dbContext;
@@ -16,12 +19,14 @@ public class Authentication : ControllerBase {
     }
 
     [HttpPost(Name = "Authenticate")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Post()
     {
-        
-
-        return Ok("Authenticated");
+        users? user =_dbContext.users.FirstOrDefault();
+        if (user == null) {
+            return BadRequest("No user found");
+        }
+        // save the authentication to the session
+        HttpContext.Session.SetString("user", user.name ?? throw new Exception("User not found"));
+        return Ok();
     }
 }
