@@ -1,6 +1,6 @@
 import { AppBar, Button, Toolbar, Box } from '@mui/material';
 import './App.css';
-import TypeBox from './typebox/typeBox.js';
+import TypeBox from './ChatMessage/TypeBox.js';
 import ChatMessage from './ChatMessage/ChatMessage.js';
 
 function App() {

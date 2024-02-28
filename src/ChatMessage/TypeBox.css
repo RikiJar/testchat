@@ -5,5 +5,5 @@
 }
 
 .sendButton:hover .custom-icon {
-    transform: translateX(50%); /* Adjust the value to control the "leaving" distance */
+    transform: translateX(50%);
 }

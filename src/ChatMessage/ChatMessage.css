@@ -1,15 +1,17 @@
 .messageBox {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 10px;
-    text-align: left;
+  width: 75vw;
+  height: 75vh;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  text-align: left;
+  background-color: grey;
 }
 
-/* App.css or ChatMessage.css */
-
-/* Style for the entire message container */
 .message-container {
   display: flex;
+  margin: 0 auto;
+  margin-left: 10px;
   flex-direction: column;
   color: white;
 }

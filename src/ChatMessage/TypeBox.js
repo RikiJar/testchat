@@ -1,6 +1,6 @@
 import { TextField, Button, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import './typeBox.css';
+import './TypeBox.css';
 
 function TypeBox() {
     return (

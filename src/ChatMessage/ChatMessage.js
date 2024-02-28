@@ -24,7 +24,7 @@ function ChatMessage() {
             {data.map((item, index) => (
                 <Box key={index} className="message-container">
                     <Box>
-                        <p className="username">{item.userId} </p>
+                        <p className="username">{item.fk_userID} </p>
                         <p className="message-text">{item.message}</p>
                     </Box>
                 </Box>
