@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace server.models;
 public class users{
@@ -12,7 +13,8 @@ public class users{
 
     [Column("email")]
     public string? email {get; set;}
-
+    
+    [JsonIgnore]
     [Column("password")]
     public string? password {get; set;}
 }

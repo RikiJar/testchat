@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using server.helpers;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,16 +13,17 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<JwtService>();
 
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
         builder => builder
-            .AllowAnyOrigin()
+            .WithOrigins(new []{ "http://localhost:3000", "http://localhost:5039"})
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithExposedHeaders("Content-Disposition")); // Optional: If you need to expose additional headers
+            .AllowCredentials());
 });
 
 var app = builder.Build();
