@@ -20,11 +20,10 @@ public class Authentication : ControllerBase {
         _jwtService = jwtService;
     }
 
-    [Route("api/[controller]/authenticate")]
-    [HttpPost(Name = "Authenticate")]
+    [HttpPost("authenticate")]
     public IActionResult Post([FromBody] users u)
     {
-        var userName = _dbContext.users.FirstOrDefault(user => user.name == u.name);
+        var userName = _dbContext.users.FirstOrDefault(user => user.username == u.username);
         if (userName == null) {
             return NotFound("user not found");
         }
@@ -42,8 +41,7 @@ public class Authentication : ControllerBase {
         return Ok(new { message = "success" });
     }
 
-    [Route("api/[controller]/login")]
-    [HttpGet(Name = "User")]
+    [HttpGet("user")]
     public IActionResult GetUser(){
         var jwt = Request.Cookies["jwt"];
         if (jwt == null) {
@@ -55,6 +53,6 @@ public class Authentication : ControllerBase {
         }
         var userId = int.Parse(token.Issuer);
         var user = _dbContext.users.FirstOrDefault(user => user.id == userId);
-        return Ok(user);
+        return Ok(new { user?.id, user?.username, user?.email });
     }
 }

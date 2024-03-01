@@ -7,6 +7,7 @@ const ChatBox = () => {
 
     return(
         <Box>
+            {document.body.style.backgroundColor = "black"}
             <AppBar position="static"
             sx={{
                 backgroundColor: "black",

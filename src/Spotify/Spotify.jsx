@@ -3,7 +3,9 @@ import './Spotify.css';
 import axios from 'axios';
 import { Container, Button, Stack, Paper, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+/*
+    >>TESTING AXIOS<<
+*/
 function Spotify() {
     const spotify_endpoint = "https://accounts.spotify.com/authorize";
     const client_id = "15b7a87f6afd4fd3846dceee9f987a33";
@@ -12,6 +14,7 @@ function Spotify() {
     const [data, setData] = useState([]);
     const [devices, setDevices] = useState([]);
     const [showData, setShowData] = useState(false);
+    const [user, setUser] = useState(null);
 
     const params = (hash) => {
         const afterHashtag = hash.substring(1);
@@ -25,6 +28,7 @@ function Spotify() {
     }
 
     useEffect(() => {
+
         if (window.location.hash) {
             const {access_token, token_type, expires_in, token} = params(window.location.hash);
             localStorage.clear();
@@ -86,12 +90,13 @@ function Spotify() {
                 console.error("No devices available.");
             }
         } catch (error) {
-            console.error("Error:", error.response.data);
+            console.error("Error: you need to have device active", error.response.data);
         }
     };
 
     return (
         <div>
+            {document.body.style.backgroundColor = "black"}
             <Container>
                 {showButton ? <Button onClick={getSpotifyData} sx={{ background: "#292617", color: "white" }}>Login to Spotify</Button> : null}
                 <Button onClick={getSpotifyHistoryData} sx={{ background: "#292617", color: "white" }}>Get Spotify History</Button>
